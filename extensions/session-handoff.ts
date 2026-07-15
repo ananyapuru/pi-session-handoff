@@ -77,14 +77,12 @@ export default function (pi: ExtensionAPI) {
     if (await askAndQueue(ctx)) return { cancel: true };
   });
 
-  // Shutdown cannot be cancelled. Persist an opt-in handoff for next Pi startup instead.
+  // Shutdown cannot be cancelled and terminal UI may already be gone. Persist the
+  // handoff without a modal; the next session asks before any agent work starts.
   pi.on("session_shutdown", async (_event, ctx) => {
-    if (offered || !ctx.hasUI) return;
+    if (offered) return;
     offered = true;
-    if (await ctx.ui.confirm("Session handoff", "Review this session for documentation on next Pi startup?")) {
-      await savePending(ctx);
-      ctx.ui.notify("Handoff saved; Pi will offer it when this project opens again.", "info");
-    }
+    await savePending(ctx);
   });
 
   pi.on("session_start", async (_event, ctx) => {

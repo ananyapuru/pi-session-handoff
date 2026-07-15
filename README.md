@@ -46,7 +46,7 @@ The extension asks before it queues a handoff. Pi then:
 | Pi event | Behavior |
 | --- | --- |
 | `/new`, `/resume`, `/fork`, `/clone` | Asks to run a handoff. Choosing yes cancels the switch, queues the review, and lets user retry switch after it completes. |
-| `/reload`, Ctrl-C, Ctrl-D, SIGHUP, SIGTERM | Asks whether to save a pending handoff. On next Pi startup in same project, asks whether to review it. |
+| `/reload`, Ctrl-C, Ctrl-D, SIGHUP, SIGTERM | Saves a pending handoff without a terminal modal. On next Pi startup in same project, asks whether to review it. |
 | Crash or `kill -9` | Cannot run a hook or prompt. |
 
 Pending handoffs are stored locally at `~/.pi/agent/session-handoffs/`. They contain project cwd and Pi session-file path, not a remote upload.
