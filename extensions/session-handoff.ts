@@ -6,9 +6,9 @@ const HANDOFF_DIR = join(process.env.HOME ?? ".", ".pi", "agent", "session-hando
 
 const HANDOFF_PROMPT = (sessionFile?: string) => `Review this completed Pi session for durable, high-value, non-brittle project knowledge.${sessionFile ? ` The previous session is recorded at \`${sessionFile}\`; read it if needed.` : ""}
 
-First, ask for approval. Then present documentation candidates as a table sorted by value descending and brittleness ascending. For every candidate include: learning, why it matters, target documentation file, and verified source path/line where relevant. Only propose cross-file behavior, operational invariants, workflows, failure modes, ownership boundaries, or surprising constraints that are non-obvious, stable for months, and likely save 30+ minutes. Do not propose temporary state, obvious facts, or local implementation details.
+Immediately review the session and present documentation candidates as a table sorted by value descending and brittleness ascending. Do not ask for approval before presenting findings. For every candidate include: learning, why it matters, target documentation file, and verified source path/line where relevant. Only propose cross-file behavior, operational invariants, workflows, failure modes, ownership boundaries, or surprising constraints that are non-obvious, stable for months, and likely save 30+ minutes. Do not propose temporary state, obvious facts, or local implementation details.
 
-After explicit approval, make documentation changes, add a concise provenance comment to a relevant source file only where it captures a durable surprising constraint, create a branch, and open a PR. Put thumbs-up/thumbs-down review instructions in that PR. Also include a learning prompt that uses feedback to improve both future suggestions and this handoff process.`;
+Ask which proposed candidates, if any, the user approves. Only after approval, make the selected documentation changes, add a concise provenance comment to a relevant source file only where it captures a durable surprising constraint, create a branch, and open a PR. Put thumbs-up/thumbs-down review instructions in that PR. Also include a learning prompt that uses feedback to improve both future suggestions and this handoff process.`;
 
 type PendingHandoff = {
   cwd: string;
