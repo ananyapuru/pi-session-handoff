@@ -1,0 +1,14 @@
+{
+  "name": "pi-session-handoff",
+  "version": "1.0.0",
+  "description": "Interactive Pi extension and skill for turning completed sessions into reviewable documentation handoffs.",
+  "keywords": ["pi-package", "pi", "session-handoff", "documentation"],
+  "license": "MIT",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "pi": {
+    "extensions": ["./extensions"],
+    "skills": ["./skills"]
+  }
+}
