@@ -4,12 +4,22 @@ Global Pi extension that turns end-of-session context into deliberate, reviewabl
 
 It does **not** modify docs, create branches, or open pull requests without user approval. When approved, it queues a Pi prompt that finds only durable, high-value, non-brittle learnings; presents candidates; then performs approved work and opens a PR.
 
-## Install
+## Install as a Pi package
+
+Install directly from Git after this repository has a release tag:
+
+```bash
+pi install git:github.com/ananyapuru/pi-session-handoff@v1.0.0
+```
+
+Use `pi update --extensions` to reconcile an unpinned package, or install a newer tag explicitly. The package ships both the lifecycle extension and a `session-handoff` skill.
+
+## Install manually
 
 ```bash
 mkdir -p ~/.pi/agent/extensions
 curl -fsSL \
-  https://raw.githubusercontent.com/ananyapuru/pi-session-handoff/main/session-handoff.ts \
+  https://raw.githubusercontent.com/ananyapuru/pi-session-handoff/main/extensions/session-handoff.ts \
   -o ~/.pi/agent/extensions/session-handoff.ts
 ```
 
@@ -55,7 +65,7 @@ Extensions execute with full local-user permissions. Review `session-handoff.ts`
 Test extension load:
 
 ```bash
-pi -e ./session-handoff.ts --list-models
+pi -e ./extensions/session-handoff.ts --list-models
 ```
 
 Then run Pi and use `/session-handoff` in a small test project.
